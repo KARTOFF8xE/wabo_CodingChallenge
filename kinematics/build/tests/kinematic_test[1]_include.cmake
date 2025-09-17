@@ -1,5 +1,0 @@
-if(EXISTS "/home/georg/Desktop/wandelbots/kinematics/build/tests/kinematic_test[1]_tests.cmake")
-  include("/home/georg/Desktop/wandelbots/kinematics/build/tests/kinematic_test[1]_tests.cmake")
-else()
-  add_test(kinematic_test_NOT_BUILT kinematic_test_NOT_BUILT)
-endif()

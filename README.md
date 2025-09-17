@@ -23,7 +23,7 @@ The goal is to improve the existing implementation so that the visualization can
 4. **Implement the Endpoint in the Server &rarr; Done**
 	Add the logic for the new endpoint in the FastAPI server (`kinematics_server`).
 
-5. **Implement the Function in the Kinematics Library**
+5. **Implement the Function in the Kinematics Library &rarr; Done**
 	Add a corresponding function in the C++ kinematics library, and create a meaningful test for it in `kinematics/tests/kinematics_test.cpp`.
 
 6. **If you have time left, what would be a beneficial task to improve the maintenance of the project &rarr; Done (partially)**
@@ -33,29 +33,34 @@ The goal is to improve the existing implementation so that the visualization can
 # Georgs solution
 
 ## Get Started:
-* `cd kinematics`
-* `mkdir build`
-* `cd build`
-* `cmake .. && make`
-* `mkdir -p ../../server/kinematics/lib`
-* `cp libwb_kinematics_shared.so ../../server/kinematics/lib`
-* `cd ../../server`
-* `poetry install`
-* `poetry run uvicorn kinematics_server.main:app --reload`
-* goto `http://127.0.0.1:8000/`
-* try it out :) (you can also try it within the visualization directly, look inside the `visualization/Readme.md` for more information)
-* to execute the tests, go back to the `build` directory and execute .`/tests/kinematic_test`
+* either:
+	* `./install.sh`
+* or manually:
+	* `cd kinematics`
+	* `mkdir build`
+	* `cd build`
+	* `cmake .. && make`
+	* `mkdir -p ../../server/kinematics/lib`
+	* `cp libwb_kinematics_shared.so ../../server/kinematics/lib`
+	* `cd ../../server`
+	* `poetry install`
+
+* to try it out, go to `server` directory:
+	* `poetry run uvicorn kinematics_server.main:app --reload`
+	* goto `http://127.0.0.1:8000/`
+	* try it out :) (you can also try it within the visualization directly, look inside the `visualization/Readme.md` for more information)
+	* to execute the tests, go back to the `build` directory and execute `./tests/kinematic_test`
 
 ## Times:
 * received: 10:00
 * install poetry and got a look onto the repo and fixed some small bugs (missing pks): 10:00-10:15
 * Tasks 1-4 and 6: 10:15-11:31
 * Writing Readme: 11:32 - ...
-* Task 5 (edited Task 6) and implemented new API to visualization: 15:55-16:15
+* Task 5 (edited Task 6) and implemented new API-Endpoint to visualization: 15:55-16:15
 
 ## Additional Tasks:
 * ensure the angles are radiant (kinematics/src/joint.cpp)
-* add installing .so via CMake (move/cpy .so to correct location), add install and start script
+* add installing .so via CMake (move/cpy .so to correct location), install and start script
 * add option for multiple animations (parameters for endpoint (in openapi.yaml))
 * take a look if the exemplary API-values are realistic
 * add to GitHub and write .gitignore, ...

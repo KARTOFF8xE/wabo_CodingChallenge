@@ -1,0 +1,4 @@
+build/
+lib/libwb_kinematics_shared.so
+.vscode/
+poetry.lock
