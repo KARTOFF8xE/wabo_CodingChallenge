@@ -1,0 +1,2 @@
+/usr/bin/ar qc libwb_kinematics_static.a CMakeFiles/wb_kinematics_static.dir/src/Joint.cpp.o CMakeFiles/wb_kinematics_static.dir/src/Link.cpp.o CMakeFiles/wb_kinematics_static.dir/src/kinematics.cpp.o
+/usr/bin/ranlib libwb_kinematics_static.a

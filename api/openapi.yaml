@@ -1,0 +1,176 @@
+openapi: 3.0.0
+info:
+  title: WaBo API
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  description: |
+    Interact with robots in an easy and intuitive way.
+  contact:
+    name: Copyright (c) 2025 Wandelbots GmbH
+    url: https://www.wandelbots.com
+  version: '0.1.0 beta'
+
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - BearerAuth: []
+  - BasicAuth: []
+
+servers:
+  - url: /
+paths:
+
+  /wabo/version:
+    get:
+      summary: WaBo Version
+      description: |
+        Get the current WaBo version.
+      operationId: getVersion
+      tags:
+        - WaBo
+      responses:
+        '200':
+          description: The operation was successful.
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: The WaBo version.
+              example: 0.1.0
+  /wabo/links:
+    get:
+      summary: WaBo Link Information
+      description: |
+        Get information about the WaBo links.
+      operationId: getLinkInformation
+      tags:
+        - WaBo
+      responses:
+        '200':
+          description: The operation was successful.
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    link_name:
+                      type: string
+                      description: The name of the link.
+                    length:
+                      type: number
+                      format: float
+                      description: The length of the link in millimeters.
+                description: The WaBo links information.
+              example:
+                - link_name: "Link 0"
+                  length: 0.75
+                - link_name: "Link 1"
+                  length: 0.5
+  /wabo/cartesian:
+    get:
+      summary: WaBo Cartesian Position
+      description: |
+        Get the current WaBo Cartesian position.
+      operationId: getCartesianPosition
+      tags:
+        - WaBo
+      parameters:
+        - name: joint_position
+          in: query
+          description: The WaBo joint positions in radians.
+          required: true
+          schema:
+            type: array
+            items:
+              type: number
+              format: float
+            minItems: 2
+            maxItems: 2
+          example: [0.0, 0.0]
+      responses:
+        '200':
+          description: The operation was successful.
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  type: number
+                  format: float
+                minItems: 2
+                maxItems: 2
+                description: The WaBo Cartesian position of x and y.
+              example: [0.0, 0.0]
+/wabo/getkinematicresults:
+    get:
+      summary: WaBo Get Kinematic Results
+      description: |
+        Get the calculated kindematic results.
+      operationId: getKinematicResults
+      tags:
+        - WaBo
+      parameters:
+        - name: joint_position
+          in: query
+          description: The WaBo joint positions in radians.
+          required: true
+          schema:
+            type: array
+            items:
+              type: number
+              format: float
+            minItems: 2
+            maxItems: 2
+          example: [0.0, 0.0]
+      responses:
+        '200':
+          description: The operation was successful.
+          content:
+            text/plain:
+              schema:
+                type: object
+                properties:
+                  x0:
+                    type: float
+                    description: "x0"
+                  x1:
+                    type: float
+                    description: "x1"
+                  x2:
+                    type: float
+                    description: "x2"
+                  y0:
+                    type: float
+                    description: "y0"
+                  y1:
+                    type: float
+                    description: "y1"
+                  y2:
+                    type: float
+                    description: "y2"
+                  xpos:
+                    type: float
+                    description: "xpos"
+                  ypos:
+                    type: float
+                    description: "ypos"
+                description: Calculates the kinematic operations.
+              example:
+                x0: 1
+                x1: 2
+                x2: 3
+                y0: 4
+                y1: 5
+                y2: 6
+                xpos: 1
+                ypos: 1

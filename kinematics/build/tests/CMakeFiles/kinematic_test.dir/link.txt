@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/kinematic_test.dir/kinematic_test.cpp.o -o kinematic_test  ../libwb_kinematics_static.a ../lib/libgtest_main.a ../lib/libgtest.a 
